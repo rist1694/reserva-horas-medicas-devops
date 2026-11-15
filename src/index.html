@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reserva de Horas Médicas | Clínica Vida Plena</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="encabezado">
+    <div class="marca">
+      <span class="logo" aria-hidden="true">+</span>
+      <div>
+        <h1>Clínica Vida Plena</h1>
+        <p>Reserva de horas médicas en línea</p>
+      </div>
+    </div>
+    <div class="estado" role="status">
+      <span class="punto"></span> Servicio operativo
+    </div>
+  </header>
+
+  <main class="contenedor">
+    <section class="tarjeta" aria-labelledby="titulo-form">
+      <h2 id="titulo-form">Reserva tu hora</h2>
+      <p class="nota">Formulario de demostración. No se almacenan ni se envían datos.</p>
+
+      <form id="form-reserva" novalidate>
+        <div class="campo">
+          <label for="nombre">Nombre del paciente</label>
+          <input type="text" id="nombre" name="nombre" placeholder="Ej.: Paciente Ejemplo" required>
+        </div>
+
+        <div class="campo">
+          <label for="correo">Correo de contacto</label>
+          <input type="email" id="correo" name="correo" placeholder="ejemplo@correo.test" required>
+        </div>
+
+        <div class="fila">
+          <div class="campo">
+            <label for="especialidad">Especialidad</label>
+            <select id="especialidad" name="especialidad" required>
+              <option value="">Seleccione...</option>
+              <option>Medicina general</option>
+              <option>Pediatría</option>
+              <option>Ginecología</option>
+              <option>Cardiología</option>
+              <option>Dermatología</option>
+            </select>
+          </div>
+          <div class="campo">
+            <label for="fecha">Fecha</label>
+            <input type="date" id="fecha" name="fecha" required>
+          </div>
+        </div>
+
+        <div class="campo">
+          <label for="horario">Horario disponible</label>
+          <select id="horario" name="horario" required>
+            <option value="">Seleccione...</option>
+            <option>09:00</option>
+            <option>10:30</option>
+            <option>12:00</option>
+            <option>15:00</option>
+            <option>16:30</option>
+          </select>
+        </div>
+
+        <button type="submit" class="boton">Reservar hora</button>
+        <p id="mensaje" class="mensaje" role="alert" hidden></p>
+      </form>
+    </section>
+
+    <aside class="lateral">
+      <section class="tarjeta">
+        <h2>Datos generales de atención</h2>
+        <ul class="datos">
+          <li><strong>Horario:</strong> lunes a viernes, 08:00 a 18:00 h</li>
+          <li><strong>Sábados:</strong> 09:00 a 13:00 h</li>
+          <li><strong>Dirección:</strong> Av. Ejemplo 1234, Santiago (dato ficticio)</li>
+          <li><strong>Teléfono:</strong> +56 2 0000 0000 (dato ficticio)</li>
+        </ul>
+      </section>
+
+      <section class="tarjeta">
+        <h2>Estado del servicio</h2>
+        <ul class="datos">
+          <li><strong>Plataforma:</strong> <span class="ok">Operativa</span></li>
+          <li><strong>Servidor:</strong> Nginx (contenedor Docker)</li>
+          <li><strong>Versión:</strong> 1.0.0</li>
+          <li><strong>Entorno:</strong> Local - http://localhost:8080</li>
+        </ul>
+      </section>
+    </aside>
+  </main>
+
+  <footer class="pie">
+    <p>Proyecto académico DevOps - IACC 2026. Sitio estático sin API ni base de datos.</p>
+  </footer>
+
+  <script>
+    // Validación mínima en el navegador (demostración; no se envía información).
+    var form = document.getElementById('form-reserva');
+    var msg = document.getElementById('mensaje');
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (!form.checkValidity()) {
+        msg.textContent = 'Por favor complete todos los campos del formulario.';
+        msg.className = 'mensaje error';
+      } else {
+        msg.textContent = 'Reserva simulada registrada correctamente (demostración).';
+        msg.className = 'mensaje exito';
+        form.reset();
+      }
+      msg.hidden = false;
+    });
+  </script>
+</body>
+</html>
