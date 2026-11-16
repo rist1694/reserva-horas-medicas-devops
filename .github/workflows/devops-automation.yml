@@ -20,7 +20,9 @@ jobs:
           done
 
       - name: Verificar que no exista .env real
-        run: test ! -f .env && echo "OK: no hay .env versionado"
+        run: |
+          test ! -f .env
+          echo "OK: no hay .env versionado"
 
       - name: Validar docker-compose
         run: docker compose config -q
@@ -32,6 +34,7 @@ jobs:
         run: |
           docker run -d --name prueba -p 8080:80 reserva-horas-medicas:ci
           sleep 5
-          curl -fsS http://localhost:8080 | grep -q "Reserva"
+          curl -fsS http://localhost:8080 -o /tmp/index.html
+          grep -q "Reserva" /tmp/index.html
           docker logs prueba
           docker rm -f prueba
